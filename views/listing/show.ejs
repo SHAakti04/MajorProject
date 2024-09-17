@@ -1,0 +1,122 @@
+<!-- so we need to remove all the parts of an index.ejs and show.ejs except body part and import boilerplate -->
+<% layout("/layouts/boilerplate.ejs") %>
+<script>
+    let mapToken="<%=process.env.MAP_TOKEN%>";
+</script>
+    <div class="row mt-3">
+        <div class="col offset-3">
+            <!-- Display listing title -->
+            <h3><%= listing.title %></h3>
+            <div class="card listing-card">
+                <!-- Display listing image -->
+                <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing-image">
+                <p>owned by  <%= listing.owner.username %></p>
+                <p class="card-text">
+                    <ul>
+                        <!-- Display listing details -->
+                        <li><%= listing.description %></li>
+                        <li><%= listing.location %></li>
+                        <li>&#8377;<%= listing.price.toLocaleString("en-IN") %></li>
+                        <li><%= listing.country %></li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- if condition is for authorization  jo onwer hai vahi edit aur delete kar skta hai.delete and edit button is only visible to owner-->
+   <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
+    <div class="col-btn mb-3 mt">
+        <!-- Buttons to edit or delete the listing -->
+        <a href="/listing/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3">Edit</a>
+        <form method="post" action="/listing/<%= listing._id %>?_method=delete">
+            <button class="btn btn-dark offset-4">Delete</button>
+        </form>
+    </div>
+    <% } %>
+    
+    <hr>
+    
+    <!-- Review section -->
+    
+    <div class="mt-3 col-md-3 offset-4">
+        <% if(currUser){ %>
+        <h4 class="mb-3">Leave a Review</h4>
+        <form method="post" action="/listing/<%=listing._id %>/review" novalidate class="needs-validation">
+            <div class=" mt-3">
+            <label for="rating" class="form-label">Rating</label>
+            <fieldset class="starability-slot">
+                
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
+            </div>
+            <div class="mb-3">
+                <!-- Comment input -->
+                <label for="comment" class="form-label"></label>
+                <textarea id="comment" name="review[comment]" cols="30" rows="10" class="form-control" type="text" required></textarea>
+                <div class="invalid-feedback">
+                    Enter a valid comment
+                </div>
+            </div>
+    
+            <button class="mb-3 btn btn-outline-dark">Submit</button>
+        </form>
+        <% } %>
+    </div>
+    <% if (listing.reviews.length > 0 ) { %> <hr>
+    <% } %>
+    <div class="row">
+       
+        <% if (listing.reviews.length > 0) { %>
+            <p><b>All Reviews</b></p>
+            <!-- If there are reviews, display each review -->
+            <% for (let review of listing.reviews) { %>
+                <div class="card col-5 mb-3 ms-3 offset-2 review-card">
+                    <div class="card-body">
+                        <!-- Debugging log: Print review ID to console -->
+                        <% console.log(review._id.toString()) %>
+                        <!-- Display review details -->
+                        <h5 class="card-title">@<%= review.author.username %></h5>
+                        <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+                        <div class="card-text"><%= review.comment %></div>   
+                    </div>
+                    <!-- Form to delete the review -->
+                    <% reviewId = review._id.toString() %>
+                   <% if(currUser && review.author._id.equals(currUser._id)){%>
+                    <form class="mt-2 mb-2" method="post" action="/listing/<%= listing._id %>/review/<%= reviewId %>?_method=delete">
+                        <button class="btn btn-sm btn-dark">Delete</button>
+                    </form>
+                    <% } %>
+                     
+                </div>
+            <% } %>
+        <% } else { %>
+            <!-- Message when there are no reviews -->
+            <p>No reviews available.</p>
+        <% } %>
+        
+    </div>
+     <!-- Map Section
+     <div class="col-5 mt-3 mb-3">
+        <h3>Where you'll be</h3>
+        <!-- Added div for Google Map with a specific height and width -->
+        <!-- <div id="map" style="height: 300px; width: 100%;"></div> -->
+    </div>
+    <!-- Google Maps API Script and custom JS -->
+ 
+ <!-- <!-- <script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.MAP_TOKEN%>&callback=initMap"> -->
+    
+ </script>
+
+ <script src="../js/index.js"></script> --> -->
+
+

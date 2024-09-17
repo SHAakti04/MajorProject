@@ -1,0 +1,114 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    display:flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+.container{
+    flex:1 !important;
+}
+/* navbar */
+.navbar{
+    height:5rem;
+    background-color: white;
+}
+
+.fa-compass{
+   color:#fe424d;
+   font-size:2rem;
+}
+.nav-link{
+    color:#222222 !important;
+    /* important means our custom style is applied over bootstrap styling */
+}
+/*  footer*/
+.f-info-link a{
+
+    text-decoration:none ;
+    color:#222222 ;
+    margin-right: 1rem;
+    margin-top: 0.2rem;
+}
+ .f-info-link a:hover{
+    text-decoration:underline;
+} 
+.f-info{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 6rem;
+    background-color: #ebebeb;
+}
+.fa-brands{
+    font-size: 1.3rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* card */
+.card{
+    border: none !important;
+    margin-bottom:2rem ;
+}
+.imgCard{
+    border-radius: 0.4rem !important;
+    width:100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text {
+    
+    color:#222222 !important;
+    font-weight: 400; 
+       
+}
+.alisting-link{
+    text-decoration:none ;
+}
+/* card effect index page */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+/*edit page button Effect */
+.add-btn{
+    background-color:#fe424d !important;
+    border: none !important;
+}
+
+.edit-btn{
+    background-color:#fe424d !important;
+    border: none !important;
+}
+/* show page */
+.show-img{
+    height: 30vh !important;
+    width: 40rem !important;
+    border-radius: 1rem !important;
+}
+.col-btn{
+    display:flex !important;  
+}
+.btn{
+    background-color: #fe424d !important;
+}
+.mt{
+    margin-top: -2rem !important;
+}
+.review-card{
+    
+    border:1px solid black !important;
+}
+
+/* map */
+#map { 
+    height:400px;
+    width:80vh;
+
+ }
