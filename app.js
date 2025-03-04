@@ -21,6 +21,7 @@ const MongoStore=require("connect-mongo");
 
 
 const dbURL=process.env.ATLAS_URL;
+console.log(dbURL)
 const store=MongoStore.create({
   mongoUrl:dbURL,
   crypto:{

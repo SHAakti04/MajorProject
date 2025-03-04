@@ -12,6 +12,8 @@ module.exports.index=async (req, res,next) => {
       next(err);
     }
   };
+
+  
 //new callback
   module.exports.New=(req, res) => {
     res.render("listing/new.ejs");
