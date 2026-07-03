@@ -100,7 +100,10 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.send("Hi, I am root"); // **Your Comment:** Default root route
 });
-
+// Health check route for uptime pingers (e.g. cron-job.org) to keep Render from sleeping
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 // **My Comment:** Listing and review routers for handling routes like /listing, /listing/:id/review
 app.use("/listing", listingRouter); 
 app.use("/listing/:id/review", reviewRouter);
